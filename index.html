@@ -27,6 +27,10 @@
 #cinema-preview .ch-download{background:#e1b5a4;color:#211922}
 #cinema-preview .ch-telegram{color:#f1e8f0;border:1px solid #ffffff25;background:#211b28;margin-top:12px;font-size:14px}
 #cinema-preview .ch-action:focus-visible{outline:3px solid #fff;outline-offset:4px}
+#cinema-preview .ch-split{display:flex;gap:10px;margin-top:14px}
+#cinema-preview .ch-alt{flex:1;flex-direction:column;gap:3px;min-height:56px;font-size:14px;color:#f1e8f0;border:1px solid #ffffff25;background:#211b28}
+#cinema-preview .ch-alt small{font-size:11px;font-weight:400;color:#aea4b4}
+#cinema-preview .ch-download+.ch-note{margin-top:8px}
 #cinema-preview .ch-note{font-size:11px;color:#aea4b4;line-height:1.9;margin:14px 0 0}
 #cinema-preview .ch-footer{margin-top:25px;color:#928798;font-size:11px;line-height:1.9}
 #cinema-preview .ch-footer a{color:#d8b3c2;text-decoration:none}
@@ -37,11 +41,21 @@
 <h1 dir="ltr">Cinema Home</h1>
 <p class="ch-intro">حمّل التطبيق على شاشتك.<br>تابع آخر التحديثات من قناتنا على تليگرام.</p>
 <div class="ch-panel">
-<div class="ch-meta"><span>Android TV</span><span>v1</span><span>APK · 126.5 MB</span></div>
-<a class="ch-action ch-download" dir="ltr" href="https://github.com/cinemahome/cinmahome/releases/latest/download/CinemaHomeAndroidTV-v1.apk"><span aria-hidden="true">↓</span>Download APK</a>
-<a class="ch-action ch-telegram cursor-interaction" href="https://t.me/Cinemahomea" target="_blank" rel="noopener" dir="ltr"><span aria-hidden="true">↗</span>Telegram · @Cinemahomea</a>
-<p class="ch-note" id="ch-note" aria-live="polite">اضغط Download لتحميل ملف التثبيت مباشرةً.</p>
+<div class="ch-meta"><span>Android TV</span><span id="ch-version">Latest</span></div>
+<a class="ch-action ch-download" dir="ltr" href="https://github.com/cinemahome/CinemaHomeTV/releases/latest/download/app-lite-universal-release.apk"><span aria-hidden="true">↓</span>Download APK</a>
+<p class="ch-note">يشتغل على كل الأجهزة. إذا مو متأكد، حمّل هذا.</p>
+<div class="ch-split">
+<a class="ch-action ch-alt" dir="ltr" href="https://github.com/cinemahome/CinemaHomeTV/releases/latest/download/app-lite-arm64-v8a-release.apk">arm64-v8a<small>الأجهزة الحديثة</small></a>
+<a class="ch-action ch-alt" dir="ltr" href="https://github.com/cinemahome/CinemaHomeTV/releases/latest/download/app-lite-armeabi-v7a-release.apk">armeabi-v7a<small>الأجهزة القديمة</small></a>
 </div>
+<a class="ch-action ch-telegram cursor-interaction" href="https://t.me/Cinemahomea" target="_blank" rel="noopener" dir="ltr"><span aria-hidden="true">↗</span>Telegram · @Cinemahomea</a>
+<p class="ch-note" id="ch-note" aria-live="polite">بعد التنصيب، التحديثات تجيك من داخل التطبيق.</p>
+</div>
+<script>
+fetch('https://api.github.com/repos/cinemahome/CinemaHomeTV/releases/latest').then(function(r){return r.json()}).then(function(d){
+if(d&&d.tag_name){document.getElementById('ch-version').textContent=d.tag_name.replace(/^v/,'').replace(/-lite$/,'')}
+}).catch(function(){});
+</script>
 <p class="ch-footer">Cinema Home<br><a href="https://t.me/Cinemahomea" target="_blank" rel="noopener" dir="ltr">@Cinemahomea</a></p>
 </div>
 
